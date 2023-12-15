@@ -1,4 +1,5 @@
 import { authenticateDeathCounterRequest } from "$lib/death-counter/authenticate";
+import { pushDeathCounterUpdateFromDatabase } from "$lib/death-counter/events";
 import { findDeathCounter, findMember } from "$lib/death-counter/find";
 import { numericParam } from "$lib/helpers";
 import { prisma } from "$lib/prisma";
@@ -37,5 +38,6 @@ export const POST: RequestHandler = async ({ params, request }) =>
         }
     });
 
+    await pushDeathCounterUpdateFromDatabase(death_counter_id);
     return json(updated_member, {status: 200});
 }

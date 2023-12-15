@@ -4,6 +4,7 @@ import { formString, numericParam } from "$lib/helpers";
 import { fail, redirect } from "@sveltejs/kit";
 import type { PageServerLoad } from "./$types";
 import { prisma } from "$lib/prisma";
+import { pushDeathCounterUpdateFromDatabase } from "$lib/death-counter/events";
 
 export const load: PageServerLoad = async ({ params }) =>
 {
@@ -47,7 +48,7 @@ export const actions =
         const members = member_names.map((name, i) =>
         {
             const deaths = numericParam(formString(member_deaths[i]))
-            return {name: `${name}`, deathCounterId: death_counter.id, deaths: deaths};
+            return {name: `${name}`, deathCounterId: death_counter_id, deaths: deaths};
         });
 
         await prisma.member.deleteMany({
@@ -60,6 +61,7 @@ export const actions =
             data: [...members]
         });
         
+        pushDeathCounterUpdateFromDatabase(death_counter_id);
         redirect(303, "/death-counter");
     }
 }

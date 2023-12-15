@@ -1,6 +1,6 @@
 import { authenticateDeathCounterRequest } from "$lib/death-counter/authenticate";
-import { pushDeathCounterUpdate } from "$lib/death-counter/events";
-import { findDeathCounter, findDeathCounterWithMembers, findMember } from "$lib/death-counter/find";
+import { pushDeathCounterUpdateFromDatabase } from "$lib/death-counter/events";
+import { findDeathCounter, findMember } from "$lib/death-counter/find";
 import { DEATH_COUNTER_HEADERS } from "$lib/death-counter/named";
 import { numericParam } from "$lib/helpers";
 import { prisma } from "$lib/prisma";
@@ -41,9 +41,6 @@ export const PUT: RequestHandler = async ({ params, request }) =>
         }
     });
 
-    let updated_death_counter = await findDeathCounterWithMembers(death_counter_id);
-    updated_death_counter.password = "";
-    pushDeathCounterUpdate(updated_death_counter);
-
+    await pushDeathCounterUpdateFromDatabase(death_counter_id);
     return json(updated_member, {status: 200});
 }
