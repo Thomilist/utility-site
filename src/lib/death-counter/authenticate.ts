@@ -1,5 +1,5 @@
 import type { DeathCounter } from "@prisma/client";
-import { DEATH_COUNTER_HEADERS } from "./headers";
+import { DEATH_COUNTER_HEADERS } from "./named";
 import { error } from "@sveltejs/kit";
 
 export function authenticateDeathCounterRequest(death_counter: DeathCounter, request: Request): boolean

@@ -7,7 +7,7 @@ export const load: PageServerLoad = async ({ params }) =>
 {
     const death_counter_id = numericParam(params.id);
     
-    const death_counter = await prisma.deathCounter.findUnique({
+    let death_counter = await prisma.deathCounter.findUnique({
         where: {
             id: death_counter_id
         },
@@ -20,6 +20,8 @@ export const load: PageServerLoad = async ({ params }) =>
     {
         error(404);
     }
+
+    death_counter.password = "";
 
     return { death_counter: death_counter };
 };

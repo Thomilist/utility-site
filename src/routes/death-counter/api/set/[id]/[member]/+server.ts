@@ -1,6 +1,7 @@
 import { authenticateDeathCounterRequest } from "$lib/death-counter/authenticate";
-import { findDeathCounter, findMember } from "$lib/death-counter/find";
-import { DEATH_COUNTER_HEADERS } from "$lib/death-counter/headers";
+import { pushDeathCounterUpdate } from "$lib/death-counter/events";
+import { findDeathCounter, findDeathCounterWithMembers, findMember } from "$lib/death-counter/find";
+import { DEATH_COUNTER_HEADERS } from "$lib/death-counter/named";
 import { numericParam } from "$lib/helpers";
 import { prisma } from "$lib/prisma";
 import { error, json, type RequestHandler } from "@sveltejs/kit";
@@ -39,6 +40,10 @@ export const PUT: RequestHandler = async ({ params, request }) =>
             }
         }
     });
+
+    let updated_death_counter = await findDeathCounterWithMembers(death_counter_id);
+    updated_death_counter.password = "";
+    pushDeathCounterUpdate(updated_death_counter);
 
     return json(updated_member, {status: 200});
 }

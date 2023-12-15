@@ -1,16 +1,31 @@
 <script lang="ts">
     import type { Member } from "@prisma/client";
     import type { PageData } from "./$types";
+    import { onMount } from "svelte";
+    import { DEATH_COUNTER_EVENT } from "$lib/death-counter/named";
 
     export let data: PageData;
 
-    const show_sum = data.death_counter.sumLabel ? true : false;
+    let death_counter = data.death_counter;
+
+    $: show_sum = death_counter.sumLabel ? true : false;
 
     function reducer(accumulator: number, current_value: Member): number
     {
         return accumulator + current_value.deaths;
     }
 
+    onMount(() =>
+    {
+        const sse = new EventSource(`/death-counter/display/${data.death_counter.id}`);
+
+        sse.addEventListener(DEATH_COUNTER_EVENT.update, (event) =>
+        {
+            death_counter = JSON.parse(event.data);
+        });
+
+        return () => sse.close();
+    });
 </script>
 
 <style>
@@ -18,11 +33,11 @@
 </style>
 
 <svelte:head>
-    <title>{data.death_counter.name}</title>
+    <title>{death_counter.name}</title>
 </svelte:head>
 
 <table>
-    {#each data.death_counter.members as member}
+    {#each death_counter.members as member}
         <tr>
             <td>
                 {member.name}:
@@ -36,10 +51,10 @@
     {#if show_sum}
         <tr>
             <td>
-                {data.death_counter.sumLabel}:
+                {death_counter.sumLabel}:
             </td>
             <td>
-                {data.death_counter.members.reduce(reducer, 0)}
+                {death_counter.members.reduce(reducer, 0)}
             </td>
         </tr>
     {/if}

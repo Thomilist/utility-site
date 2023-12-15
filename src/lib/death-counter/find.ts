@@ -1,8 +1,9 @@
 import { numericParam } from "$lib/helpers";
-import { prisma } from "$lib/prisma";
+import { prisma, type DeathCounterWithMembers } from "$lib/prisma";
+import type { DeathCounter, Member } from "@prisma/client";
 import { error } from "@sveltejs/kit";
 
-export async function findDeathCounterWithMembers(death_counter_id: number)
+export async function findDeathCounterWithMembers(death_counter_id: number): Promise<DeathCounterWithMembers>
 {
     const death_counter = await prisma.deathCounter.findUnique({
         where: {
@@ -21,7 +22,7 @@ export async function findDeathCounterWithMembers(death_counter_id: number)
     return death_counter;
 }
 
-export async function findDeathCounter(death_counter_id: number)
+export async function findDeathCounter(death_counter_id: number): Promise<DeathCounter>
 {
     const death_counter = await prisma.deathCounter.findUnique({
         where: {
@@ -37,7 +38,7 @@ export async function findDeathCounter(death_counter_id: number)
     return death_counter;
 }
 
-export async function findMemberFromParams(params: Partial<Record<string, string>>)
+export async function findMemberFromParams(params: Partial<Record<string, string>>): Promise<Member>
 {
     const death_counter_id = numericParam(params.id);
     const member_name = params.member;
@@ -50,7 +51,7 @@ export async function findMemberFromParams(params: Partial<Record<string, string
     return await findMember(death_counter_id, member_name)
 }
 
-export async function findMember(death_counter_id: number, member_name: string)
+export async function findMember(death_counter_id: number, member_name: string): Promise<Member>
 {
     const member = await prisma.member.findUnique({
         where: {
