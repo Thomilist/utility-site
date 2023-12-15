@@ -9,21 +9,21 @@ form
         "save";
     gap: 20px;
 
-    .members
+    & .members
     {
-        .fields
+        & .fields
         {
             display: grid;
             grid-template-areas: "name deaths remove";
 
-            input[type=number]
+            & input[type=number]
             {
                 min-width: 50px;
             }
         }
     }
 
-    .invalid_password
+    & .invalid_password
     {
         color: red;
     }

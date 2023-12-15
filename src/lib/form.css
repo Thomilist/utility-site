@@ -2,22 +2,22 @@ form
 {
     max-width: fit-content;
 
-    legend
+    & legend
     {
         font-weight: bold;
     }
 
-    input
+    & input
     {
         min-width: 300px;
     }
 
-    p
+    & p
     {
         font-style: italic;
     }
 
-    .fields
+    & .fields
     {
         margin: 10px 0;
         display: grid;
