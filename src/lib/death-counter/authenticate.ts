@@ -8,7 +8,7 @@ export function authenticateDeathCounterRequest(death_counter: DeathCounter, req
 
     if (!supplied_password)
     {
-        throw error(400);
+        error(400);
     }
 
     return authenticateDeathCounter(death_counter, supplied_password);

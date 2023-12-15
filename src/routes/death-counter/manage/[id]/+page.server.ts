@@ -60,6 +60,6 @@ export const actions =
             data: [...members]
         });
         
-        throw redirect(303, "/death-counter");
+        redirect(303, "/death-counter");
     }
 }

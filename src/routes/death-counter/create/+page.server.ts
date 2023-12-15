@@ -10,7 +10,7 @@ export const actions =
 
         if (!data.has("name") || !data.has("password"))
         {
-            throw redirect(303, "/death-counter/create");
+            redirect(303, "/death-counter/create");
         }
 
         const death_counter = await prisma.deathCounter.create({
@@ -30,6 +30,6 @@ export const actions =
             data: [...members]
         })
         
-        throw redirect(303, "/death-counter");
+        redirect(303, "/death-counter");
     }
 };

@@ -12,7 +12,7 @@ export const PUT: RequestHandler = async ({ params, request }) =>
     
     if (!authenticateDeathCounterRequest(death_counter, request))
     {
-        throw error(401);
+        error(401);
     }
 
     const new_value = numericParam(request.headers.get(DEATH_COUNTER_HEADERS.value));
@@ -21,7 +21,7 @@ export const PUT: RequestHandler = async ({ params, request }) =>
 
     if (!member_name)
     {
-        throw error(400);
+        error(400);
     }
     
     const member = await findMember(death_counter_id, member_name);

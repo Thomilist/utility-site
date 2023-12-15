@@ -18,7 +18,7 @@ export const load: PageServerLoad = async ({ params }) =>
 
     if (!death_counter)
     {
-        throw error(404);
+        error(404);
     }
 
     return { death_counter: death_counter };

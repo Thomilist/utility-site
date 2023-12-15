@@ -11,14 +11,14 @@ export const POST: RequestHandler = async ({ params, request }) =>
     
     if (!authenticateDeathCounterRequest(death_counter, request))
     {
-        throw error(401);
+        error(401);
     }
 
     const member_name = params.member;
 
     if (!member_name)
     {
-        throw error(400);
+        error(400);
     }
     
     const member = await findMember(death_counter_id, member_name);

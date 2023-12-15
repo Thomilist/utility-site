@@ -15,7 +15,7 @@ export async function findDeathCounterWithMembers(death_counter_id: number)
 
     if (!death_counter)
     {
-        throw error(404);
+        error(404);
     }
 
     return death_counter;
@@ -31,7 +31,7 @@ export async function findDeathCounter(death_counter_id: number)
 
     if (!death_counter)
     {
-        throw error(404);
+        error(404);
     }
 
     return death_counter;
@@ -44,7 +44,7 @@ export async function findMemberFromParams(params: Partial<Record<string, string
 
     if (!member_name)
     {
-        throw error(404);
+        error(404);
     }
     
     return await findMember(death_counter_id, member_name)
@@ -63,7 +63,7 @@ export async function findMember(death_counter_id: number, member_name: string)
 
     if (!member)
     {
-        throw error(404);
+        error(404);
     }
 
     return member;

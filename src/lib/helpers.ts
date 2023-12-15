@@ -4,14 +4,14 @@ export function numericParam(param: string | null | undefined): number
 {
     if (!param)
     {
-        throw error(400);
+        error(400);
     }
 
     const num = Number.parseInt(param);
 
     if (Number.isNaN(num))
     {
-        throw error(400);
+        error(400);
     }
 
     return num;
