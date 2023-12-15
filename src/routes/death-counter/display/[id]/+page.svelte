@@ -21,7 +21,12 @@
 
         sse.addEventListener(DEATH_COUNTER_EVENT.update, (event) =>
         {
-            death_counter = JSON.parse(event.data);
+            const received_data = JSON.parse(event.data);
+
+            if (received_data.id === death_counter.id)
+            {
+                death_counter = received_data;
+            }
         });
 
         return () => sse.close();
