@@ -10,7 +10,11 @@ export async function findDeathCounterWithMembers(death_counter_id: number): Pro
             id: death_counter_id
         },
         include: {
-            members: true
+            members: {
+                orderBy: {
+                    sortIndex: "asc"
+                }
+            }
         }
     });
 

@@ -15,15 +15,15 @@ export const actions =
 
         const death_counter = await prisma.deathCounter.create({
             data: {
-                name: `${data.get("name")}`,
-                password: `${data.get("password")}`,
+                name: formString(data.get("name")),
+                password: formString(data.get("password")),
                 sumLabel: formString(data.get("sum_label"))
             }
         });
 
-        const members = data.getAll("member").map(member =>
+        const members = data.getAll("member").map((member, i) =>
         {
-            return {name: `${member}`, deathCounterId: death_counter.id};
+            return {name: `${member}`, deathCounterId: death_counter.id, sortIndex: i};
         });
 
         await prisma.member.createMany({

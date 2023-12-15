@@ -5,11 +5,17 @@ import { fail, redirect } from "@sveltejs/kit";
 import type { PageServerLoad } from "./$types";
 import { prisma } from "$lib/prisma";
 import { pushDeathCounterUpdateFromDatabase } from "$lib/death-counter/events";
+import type { Member } from "@prisma/client";
 
 export const load: PageServerLoad = async ({ params }) =>
 {
     const death_counter_id = numericParam(params.id);
-    const death_counter = await findDeathCounterWithMembers(death_counter_id);
+    let death_counter = await findDeathCounterWithMembers(death_counter_id);
+    
+    death_counter.members.sort((a: Member, b: Member) =>
+    {
+        return a.sortIndex - b.sortIndex
+    });
 
     return {death_counter: death_counter};
 };
@@ -48,7 +54,7 @@ export const actions =
         const members = member_names.map((name, i) =>
         {
             const deaths = numericParam(formString(member_deaths[i]))
-            return {name: `${name}`, deathCounterId: death_counter_id, deaths: deaths};
+            return {name: `${name}`, deathCounterId: death_counter_id, deaths: deaths, sortIndex: i};
         });
 
         await prisma.member.deleteMany({

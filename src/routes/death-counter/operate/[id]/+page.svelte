@@ -8,13 +8,6 @@
 
     let death_counter = data.death_counter;
 
-    $: show_sum = death_counter.sumLabel ? true : false;
-
-    function reducer(accumulator: number, current_value: Member): number
-    {
-        return accumulator + current_value.deaths;
-    }
-
     onMount(() =>
     {
         const sse = new EventSource(`/death-counter/display/${data.death_counter.id}`);
@@ -36,6 +29,18 @@
 
         return () => sse.close();
     });
+
+    function decrement(name: string)
+    {
+        const password = "hunter2";
+        fetch(`/death-counter/api/decrement/${death_counter.id}/${name}`, {method: "POST", headers: {"Death-Counter-Password": password}});
+    }
+
+    function increment(name: string)
+    {
+        const password = "hunter2";
+        fetch(`/death-counter/api/increment/${death_counter.id}/${name}`, {method: "POST", headers: {"Death-Counter-Password": password}});
+    }
 </script>
 
 <style>
@@ -46,26 +51,27 @@
     <title>{death_counter.name}</title>
 </svelte:head>
 
+<h1>{death_counter.name}</h1>
+
 <table>
     {#each death_counter.members as member}
         <tr>
-            <td class="member_name">
+            <td class="name">
                 {member.name}:
             </td>
-            <td class="member_deaths">
+            <td>
+                <button on:click={() => decrement(member.name)}>
+                    -
+                </button>
+            </td>
+            <td class="deaths">
                 {member.deaths}
+            </td>
+            <td>
+                <button on:click={() => increment(member.name)}>
+                    +
+                </button>
             </td>
         </tr>
     {/each}
-
-    {#if show_sum}
-        <tr>
-            <td class="sum_label">
-                {death_counter.sumLabel}:
-            </td>
-            <td class="sum">
-                {death_counter.members.reduce(reducer, 0)}
-            </td>
-        </tr>
-    {/if}
 </table>

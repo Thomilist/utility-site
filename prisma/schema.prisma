@@ -23,6 +23,7 @@ model Member {
     deathCounter   DeathCounter @relation(references: [id], fields: [deathCounterId])
     name           String
     deaths         Int          @default(0)
+    sortIndex      Int
 
     @@unique([deathCounterId, name])
 }

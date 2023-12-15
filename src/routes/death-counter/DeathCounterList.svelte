@@ -24,13 +24,18 @@
                     {death_counter.name}
                 </td>
                 <td>
-                    <a href="/death-counter/manage/{death_counter.id}">
-                        Manage
+                    <a href="/death-counter/display/{death_counter.id}">
+                        Display
                     </a>
                 </td>
                 <td>
-                    <a href="/death-counter/display/{death_counter.id}">
-                        Display
+                    <a href="/death-counter/operate/{death_counter.id}">
+                        Operate
+                    </a>
+                </td>
+                <td>
+                    <a href="/death-counter/manage/{death_counter.id}">
+                        Manage
                     </a>
                 </td>
             </tr>
