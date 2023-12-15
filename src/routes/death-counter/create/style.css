@@ -1,0 +1,9 @@
+form
+{
+    display: grid;
+    grid-template-areas:
+        "counter"
+        "members"
+        "create";
+    gap: 20px;
+}

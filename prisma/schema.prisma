@@ -1,0 +1,28 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model DeathCounter {
+    id       Int      @id @default(autoincrement())
+    password String
+    name     String
+    sumLabel String?
+    members  Member[]
+}
+
+model Member {
+    deathCounterId Int
+    deathCounter   DeathCounter @relation(references: [id], fields: [deathCounterId])
+    name           String
+    deaths         Int          @default(0)
+
+    @@unique([deathCounterId, name])
+}

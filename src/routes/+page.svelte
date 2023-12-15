@@ -1,2 +1,13 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script lang="ts">
+    import ToolList from "./ToolList.svelte";
+
+    const title = "Thomilist's Streaming Tools";
+</script>
+
+<svelte:head>
+    <title>{title}</title>
+</svelte:head>
+
+<h1>{title}</h1>
+
+<ToolList/>

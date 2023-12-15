@@ -1,0 +1,30 @@
+form
+{
+    display: grid;
+    grid-template-areas:
+        "authenticate"
+        "change_password"
+        "counter"
+        "members"
+        "save";
+    gap: 20px;
+
+    .members
+    {
+        .fields
+        {
+            display: grid;
+            grid-template-areas: "name deaths remove";
+
+            input[type=number]
+            {
+                min-width: 50px;
+            }
+        }
+    }
+
+    .invalid_password
+    {
+        color: red;
+    }
+}

@@ -1,0 +1,27 @@
+form
+{
+    max-width: fit-content;
+
+    legend
+    {
+        font-weight: bold;
+    }
+
+    input
+    {
+        min-width: 300px;
+    }
+
+    p
+    {
+        font-style: italic;
+    }
+
+    .fields
+    {
+        margin: 10px 0;
+        display: grid;
+        grid-template-areas: "label input";
+        gap: 10px;
+    }
+}
