@@ -17,8 +17,10 @@
     A death counter intended to be used as an overlay on live streams of video game challenge runs.
 </p>
 
-<a href="/death-counter/create">
-    Create New
-</a>
+<p>
+    <a href="/death-counter/create">
+        Create New
+    </a>
+</p>
 
 <DeathCounterList death_counters={data.death_counters}/>
