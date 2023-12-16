@@ -6,4 +6,14 @@ form
         "members"
         "create";
     gap: 20px;
+
+    & .members
+    {
+        & .fields
+        {
+            
+            display: grid;
+            grid-template-columns: 1fr auto;
+        }
+    }
 }

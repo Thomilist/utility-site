@@ -14,7 +14,7 @@ form
         & .fields
         {
             display: grid;
-            grid-template-areas: "name deaths remove";
+            grid-template-columns: 1fr auto auto;
 
             & input[type=number]
             {

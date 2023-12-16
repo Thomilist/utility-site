@@ -7,6 +7,11 @@ form
         font-weight: bold;
     }
 
+    & label
+    {
+        max-width: fit-content;
+    }
+
     & input
     {
         min-width: 300px;
@@ -15,13 +20,19 @@ form
     & p
     {
         font-style: italic;
+        max-width: 600px;
+    }
+
+    & fieldset button
+    {
+        max-width: fit-content;
     }
 
     & .fields
     {
         margin: 10px 0;
         display: grid;
-        grid-template-areas: "label input";
+        grid-template-columns: auto 1fr;
         gap: 10px;
     }
 }
