@@ -7,6 +7,7 @@
     export let data: PageData;
 
     let death_counter = data.death_counter;
+    let password = "";
 
     onMount(() =>
     {
@@ -32,13 +33,11 @@
 
     function decrement(name: string)
     {
-        const password = "hunter2";
         fetch(`/death-counter/api/decrement/${death_counter.id}/${name}`, {method: "POST", headers: {"Death-Counter-Password": password}});
     }
 
     function increment(name: string)
     {
-        const password = "hunter2";
         fetch(`/death-counter/api/increment/${death_counter.id}/${name}`, {method: "POST", headers: {"Death-Counter-Password": password}});
     }
 </script>
@@ -52,6 +51,11 @@
 </svelte:head>
 
 <h1>{death_counter.name}</h1>
+
+<div>
+    <label for="password">Password</label>
+    <input id="password" type="password" bind:value={password} required>
+</div>
 
 <table>
     {#each death_counter.members as member}
