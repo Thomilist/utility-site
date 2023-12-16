@@ -48,6 +48,10 @@
         </div>
 
         <p>
+            The password is stored in plain text. Treat it the same as e.g. a password for a temporary game lobby, and definitely do not reuse a password from anything important.
+        </p>
+
+        <p>
             Leave sum label blank to not show summed deaths.
         </p>
     </fieldset>

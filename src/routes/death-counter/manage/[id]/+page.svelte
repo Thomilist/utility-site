@@ -65,6 +65,10 @@
         </div>
 
         <p>
+            The password is stored in plain text. Treat it the same as e.g. a password for a temporary game lobby, and definitely do not reuse a password from anything important.
+        </p>
+
+        <p>
             Leave new password blank to keep the current password.
         </p>
     </fieldset>
