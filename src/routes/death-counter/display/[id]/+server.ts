@@ -7,6 +7,7 @@ export const GET: RequestHandler = () =>
 {
     const event = new EventEmitter();
     events.push(event);
+    let timer: ReturnType<typeof setInterval> | undefined;
     
     const stream = new ReadableStream
     ({
@@ -16,6 +17,12 @@ export const GET: RequestHandler = () =>
             {
                 controller.enqueue(`event: ${DEATH_COUNTER_EVENT.update}\ndata: ${JSON.stringify(data)}\n\n`);
             });
+
+            timer = setInterval(() =>
+            {
+                controller.enqueue("event: ping\ndata: ping");
+            },
+            60000);
         },
         cancel()
         {
@@ -25,6 +32,8 @@ export const GET: RequestHandler = () =>
             {
                 events.splice(index, 1);
             }
+
+            clearInterval(timer);
         }
     });
 
