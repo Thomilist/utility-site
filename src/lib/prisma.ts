@@ -2,7 +2,7 @@ import { Prisma, PrismaClient } from "@prisma/client";
 
 export const prisma = new PrismaClient();
 
-export type DeathCounterWithMembers = Prisma.DeathCounterGetPayload<{
+export type CounterWithMembers = Prisma.CounterGetPayload<{
     include: {
         members: true
     }

@@ -10,7 +10,7 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model DeathCounter {
+model Counter {
     id       Int      @id @default(autoincrement())
     password String
     name     String
@@ -19,11 +19,11 @@ model DeathCounter {
 }
 
 model Member {
-    deathCounterId Int
-    deathCounter   DeathCounter @relation(references: [id], fields: [deathCounterId])
-    name           String
-    deaths         Int          @default(0)
-    sortIndex      Int
+    counterId   Int
+    counter     Counter @relation(references: [id], fields: [counterId])
+    name        String
+    count       Int     @default(0)
+    sortIndex   Int
 
-    @@unique([deathCounterId, name])
+    @@unique([counterId, name])
 }
