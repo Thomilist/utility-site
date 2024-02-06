@@ -9,7 +9,7 @@ export const tools: Tool[] =
     },
     {
         name: "Lethal Company Overtime Bonus Calculator",
-        description: "Calculate how much to sell to reach a certain balance once the overtime bonus is applied.",
+        description: "Calculate how much to sell to reach a certain balance once the overtime bonus is applied",
         route: "/lethal-company-overtime-bonus"
     }
 ];
