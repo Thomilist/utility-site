@@ -1,7 +1,7 @@
 <script lang="ts">
-    import ToolList from "./ToolList.svelte";
+    import ToolList from "../lib/-tool-list/ToolList.svelte";
 
-    const title = "Thomilist's Streaming Tools";
+    const title = "Thomilist's Utilities";
 </script>
 
 <svelte:head>

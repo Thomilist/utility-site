@@ -1,0 +1,35 @@
+table
+{
+    --cell-padding: 5px;
+
+    border-collapse: collapse;
+
+    & thead
+    {
+        & tr
+        {
+            & th
+            {
+                text-align: left;
+                border-bottom: 1px solid black;
+                padding: var(--cell-padding);
+            }
+        }
+    }
+
+    & tbody
+    {
+        & tr
+        {
+            & td
+            {
+                padding: var(--cell-padding);
+            }
+        }
+
+        & tr:nth-child(odd)
+        {
+            background-color: lightgray;
+        }
+    }
+}

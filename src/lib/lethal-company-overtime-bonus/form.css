@@ -1,0 +1,51 @@
+form
+{
+    --grid-gap: 10px;
+    width: 360px;
+    
+    & fieldset
+    {
+        display: flex;
+        flex-direction: column;
+        gap: var(--grid-gap);
+
+        & div.label-value
+        {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: var(--grid-gap);
+            width: 100%;
+        }
+
+        & div.label-preset-value
+        {
+            display: grid;
+            grid-template-columns: 1fr auto auto;
+            gap: var(--grid-gap);
+            width: 100%;
+        }
+
+        & input
+        {
+            justify-self: flex-end;
+        }
+
+        & input[type="number"]
+        {
+            text-align: right;
+            max-width: 70px;
+        }
+
+        & output
+        {
+            text-align: right;
+        }
+
+        & hr
+        {
+            width: 100%;
+            padding: 0;
+            margin: 0;
+        }
+    }
+}
