@@ -1,4 +1,10 @@
 td
 {
     padding-right: 10px;
+
+    &.member_count,
+    &.sum
+    {
+        text-align: right;
+    }
 }
