@@ -20,6 +20,6 @@
     <ScrapToSell/>
 
     <p>
-        Note: The calculators are independant.
+        Note: The calculators are independent.
     </p>
 </div>
